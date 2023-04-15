@@ -1,0 +1,6 @@
+.program blinkPio
+
+loop:
+    pull block
+    out pins, 1
+    jmp loop

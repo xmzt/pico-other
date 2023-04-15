@@ -1,0 +1,6 @@
+add_executable(blinkPio)
+pico_enable_stdio_usb(blinkPio 1)
+pico_generate_pio_header(blinkPio ${CMAKE_CURRENT_LIST_DIR}/blinkPio.pio)
+target_sources(blinkPio PRIVATE blinkPio.c)
+target_link_libraries(blinkPio PRIVATE pico_stdlib hardware_pio)
+pico_add_extra_outputs(blinkPio)

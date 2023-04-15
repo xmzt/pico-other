@@ -1,0 +1,5 @@
+add_executable(tmp101)
+pico_enable_stdio_usb(tmp101 1)
+target_sources(tmp101 PRIVATE tmp101.c)
+target_link_libraries(tmp101 PRIVATE pico_stdlib hardware_i2c)
+pico_add_extra_outputs(tmp101)
