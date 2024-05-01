@@ -1,0 +1,19 @@
+=========================================================================================================================
+BUILD PICO C SOURCE
+
+mkdir build
+(cd build && picocmake ..)
+(cd build && make)
+
+minicom -D /dev/ttyACM0 -b 115200
+minicom -D /dev/ttyACM1 -b 115200
+
+=========================================================================================================================
+UDEV RULES MOUNT RPI AS USERSPACE
+
+/etc/udev/rules.d/53-rpi.rules:
+# Raspberry Pi Pico W
+ACTION=="add", SUBSYSTEM=="block", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0660", GROUP="rpi", SYMLINK+="rpi_pico", RUN{program}+="/usr/bin/systemd-mount --no-block --automount=no --collect -o gid=rpi,dmask=007 $devnode /rpi_pico"
+
+udevadm control --reload
+#udevadm test  $(udevadm info --query=path --name=/dev/xxx)

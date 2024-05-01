@@ -8,3 +8,4 @@ pico_sdk_init()
 
 add_subdirectory(blinkPio)
 add_subdirectory(tmp101)
+add_subdirectory(selfprog)
